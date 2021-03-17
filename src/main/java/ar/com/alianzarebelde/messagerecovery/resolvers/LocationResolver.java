@@ -5,13 +5,7 @@ import ar.com.alianzarebelde.messagerecovery.models.Coordinate;
 
 public class LocationResolver {
 
-	public static Coordinate KENOBI = new Coordinate(-500, -200);
-	
-	public static Coordinate SKYWALKER = new Coordinate(100, -100);
-	
-	public static Coordinate SATO = new Coordinate(500, 100);
-	
-	
+	private static float TOLERANCE_PERCENTAGE = 0.5f;
 	
 	/**
 	 * Obtiene las coordendas del emisor.
@@ -39,13 +33,16 @@ public class LocationResolver {
 	 * @param d2
 	 * @param d3
 	 * @return
+	 * @throws InvalidDistanceException 
 	 */
-	private static Coordinate resolveCoordinate(float d1, float d2, float d3) {
+	private static Coordinate resolveCoordinate(float d1, float d2, float d3) throws InvalidDistanceException {
 		
 		float varA = resolveVarA(d1, d2);
 		float varB = resolveVarB(d2, d3);
+		Coordinate coordinate = new Coordinate(resolveX(varA, varB), resolveY(varA, varB));
 		
-		return new Coordinate(resolveX(varA, varB), resolveY(varA, varB));
+		verification(coordinate.getX(), coordinate.getY(), d1);
+		return coordinate;
 		
 	}
 	
@@ -120,6 +117,44 @@ public class LocationResolver {
 	}
 	
 	
+	/**
+	 * 
+	 * Verificacion del resultado.
+	 * 
+	 * x^2 + y^2 + 1000*x + 400*y + 290000 == d1^2
+	 * 
+	 * @param x
+	 * @param y
+	 * @param d1
+	 * @throws InvalidDistanceException
+	 */
+	private static void verification(float x, float y, float d1) throws InvalidDistanceException {
+		float distance = power(x,2) + power(y,2) + 1000*x + 400*y + 290000;
+		if(!approximatelyEqual(distance, power(d1, 2), TOLERANCE_PERCENTAGE)) {
+			throw new InvalidDistanceException("Distancias inválidas.");
+		}
+	}
+	
+	/**
+	 * Calculo si es "aproximadamente" igual. 
+	 * 
+	 * @param desiredValue
+	 * @param actualValue
+	 * @return
+	 */
+	public static boolean approximatelyEqual(float desiredValue, float actualValue, float tolerancePercentage) {
+	    float diff = Math.abs(desiredValue - actualValue);         
+	    float tolerance = tolerancePercentage/100 * desiredValue;  
+	    return diff < tolerance;                                   
+	}
+	
+	/**
+	 * Calculo exponencial.
+	 * 
+	 * @param base
+	 * @param power
+	 * @return
+	 */
 	private static float power(final float base, final int power) {
 	    float result = 1;
 	    for( int i = 0; i < power; i++ ) {
@@ -127,5 +162,4 @@ public class LocationResolver {
 	    }
 	    return result;
 	}
-	
 }
