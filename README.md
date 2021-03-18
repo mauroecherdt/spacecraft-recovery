@@ -68,7 +68,8 @@ x^2 + y^2 + 1000x + 400y + 290000 == d1^2
 Deben ser aproximadamente igual con una tolerancia del 0,5%.
 ```
 
-- Para la interpretación de los mensajes recibidos si existe al menos un desfasaje en alguno, se procede a alinear los arrays (los otros se rellena con "" al principio). Se aplican las siguientes reglas:
+- Si existe al menos un desfasaje en uno de los mensajes, se procede a alinear todos los arrays (se rellena con "" al principio). 
+Reglas para interpretación del mensaje:
 ```
 - Si en una misma posición todas las palabras son iguales, se aplica la palabra.
 - Si en una misma posición todas las palabras son distintas, se aplica "" ( no se puede determinar ).
