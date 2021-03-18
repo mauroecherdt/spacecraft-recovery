@@ -6,7 +6,7 @@
 
 	<groupId>ar.com.alianzarebelde</groupId>
 	<artifactId>spacecraft-recovery</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>spacecraft-recovery</name>
 	<description>Libreria para triangulación de posición y recuperación de mensajes recibidos en los satelites Kenobi, Skywalker y Sato.</description>
 

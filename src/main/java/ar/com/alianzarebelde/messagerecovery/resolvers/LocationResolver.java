@@ -136,13 +136,13 @@ public class LocationResolver {
 	}
 	
 	/**
-	 * Calculo si es "aproximadamente" igual. 
+	 * Calcula si es "aproximadamente" igual. 
 	 * 
 	 * @param desiredValue
 	 * @param actualValue
 	 * @return
 	 */
-	public static boolean approximatelyEqual(float desiredValue, float actualValue, float tolerancePercentage) {
+	private static boolean approximatelyEqual(float desiredValue, float actualValue, float tolerancePercentage) {
 	    float diff = Math.abs(desiredValue - actualValue);         
 	    float tolerance = tolerancePercentage/100 * desiredValue;  
 	    return diff < tolerance;                                   
