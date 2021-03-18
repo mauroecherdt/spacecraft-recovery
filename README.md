@@ -65,7 +65,7 @@ d3: Distancia de la nave al satelite Sato.
 ```
 x^2 + y^2 + 1000x + 400y + 290000 == d1^2
 
-Deben ser aproximadamente igual con una tolerancia del 0,05%.
+Deben ser aproximadamente igual con una tolerancia del 0,5%.
 ```
 
 - Para la interpretación de los mensajes recibidos si existe al menos un desfasaje en alguno, se procede a alinear los arrays (los otros se rellena con "" al principio). Se aplican las siguientes reglas:
