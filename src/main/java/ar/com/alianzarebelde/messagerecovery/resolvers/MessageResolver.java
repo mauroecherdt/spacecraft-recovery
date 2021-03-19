@@ -93,9 +93,9 @@ public class MessageResolver {
 
 			String decodeString = null;
 
-			String s1 = message1[i];
-			String s2 = message2[i];
-			String s3 = message3[i];
+			String s1 = message1[i] != null ? message1[i].trim() : "";
+			String s2 = message2[i] != null ? message2[i].trim() : "";
+			String s3 = message3[i] != null ? message3[i].trim() : "";
 
 			long distinct = getDistinct(s1, s2, s3);
 			if (distinct == 1) {
